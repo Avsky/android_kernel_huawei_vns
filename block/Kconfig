@@ -111,11 +111,6 @@ config BLK_CMDLINE_PARSER
 
 	See Documentation/block/cmdline-partition.txt for more information.
 
-config BLOCK_COMPAT
-        bool
-        depends on BLOCK && COMPAT
-        default y
-
 config BLK_MQ_REFCOUNT
 	bool "blk-mq reference count"
 	depends on BLOCK
@@ -214,14 +209,17 @@ config HISI_BLK_INLINE_CRYPTO
 
 	 If unsure, say N, hehe!
 
-source block/Kconfig.iosched
-
-endif # BLOCK
-
 menu "Partition Types"
 
 source "block/partitions/Kconfig"
 
 endmenu
+
+endif # BLOCK
+
+config BLOCK_COMPAT
+	bool
+	depends on BLOCK && COMPAT
+	default y
 
 source block/Kconfig.iosched
